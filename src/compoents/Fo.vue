@@ -1,7 +1,7 @@
 <template>
   <div >
     <div @click="showAlet">
-      foo 事件
+      foo 事件xxxxxxxxxx
     </div>
   </div>
 </template>

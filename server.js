@@ -23,8 +23,8 @@ const render = VueServerRenderer.createBundleRenderer(serverBundle,{
 
 router.get('/',async (ctx) => {
   ctx.body = await new Promise((resolve,reject) => { // 插入到页面中
-    render.renderToString((err,html) => {
-      if(err) reject(err)
+    render.renderToString({url:'/'},(err,html) => { // 调用服务端渲染的函数，可以传入参数，拿到回调函数拿到结果
+      if(err) reject(err) 
       resolve(html)
     })
   })
@@ -32,9 +32,19 @@ router.get('/',async (ctx) => {
   // ctx.body = html
 })
 
-
-app.use(router.routes())
-app.use(static(path.resolve(__dirname,'dist')))   // 请求静态文件时 根据配置优先在dist文件夹中查找
+router.get('/(.*)',async (ctx) => { // 匹配刷新页面的路由路径，所有的路径都会从此函数进入
+  ctx.body = await new Promise((resolve,reject) => { // 插入到页面中
+    render.renderToString({url:ctx.url},(err,html) => { // 根据请求的api,调用服务端渲染函数，拿到对应的执行结果返回对应界面
+      if(err && err.code == 404 ) { 
+        resolve('not Found')
+      }else {
+       resolve(html)
+      }
+    })
+  })
+})
+app.use(static(path.resolve(__dirname,'dist')))   // 请求静态文件时 根据配置优先在dist文件夹中查找（这里放在首位的原因是因为前端路由是通过懒加载进行打包，会打包出js文件，路径匹配到发起请求）
+app.use(router.routes()) // 如果查不到的化 再进入后端路由系统
 
 // 启动服务
 app.listen(3000,function() {

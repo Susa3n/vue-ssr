@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <Bar></Bar>
-    <Foo></Foo>
+    <router-link to='/'>fo</router-link>
+    <router-link to='/bar'>bar</router-link>
+    <hr>
+    <hr>
+    <hr>
+    <router-view></router-view>
   </div>
 </template>
 <script>

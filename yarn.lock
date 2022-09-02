@@ -3992,6 +3992,11 @@
     "vue-hot-reload-api" "^2.3.0"
     "vue-style-loader" "^4.1.0"
 
+"vue-router@^3.6.4":
+  "integrity" "sha512-QSJs5aKKPiwBH++gelVbnq0ZFbUZXjlsjAklUM+F8dtd49YY72QsD1uGpBk/cqLK1bkZ8HiqPjS8NkhaGtpqHw=="
+  "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-3.6.4.tgz"
+  "version" "3.6.4"
+
 "vue-server-renderer@^2.7.10":
   "integrity" "sha512-hvlnyTZmDmnI7IpQE5YwIwexPi6yJq8eeNTUgLycPX3uhuEobygAQklHoeVREvwNKcET/MnVOtjF4c7t7mw6CQ=="
   "resolved" "https://registry.npmjs.org/vue-server-renderer/-/vue-server-renderer-2.7.10.tgz"
